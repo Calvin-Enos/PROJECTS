@@ -1,85 +1,68 @@
-## Language / Langue
+# C Progress Bar
 
-- English
-- Français
+This project demonstrates a simple progress bar implemented in C. It has been refactored for better modularity.
 
-# ProgressBar
+## Functionality
 
-This project shows how to create a progress bar in C.
+The `progressbar` function displays a progress bar in the console that updates in place. It shows:
+- A prefix message.
+- A visual bar (e.g., `[◼◼◼.......]`).
+- The current progress as a ratio (e.g., `50/100`).
 
-## Usage
+The progress bar updates on the same line using carriage returns (`\r`) and `fflush(stdout)`. After the main task completion, a "Task Complete!" message is displayed on a new line.
 
-To compile the project, run the following command in the project directory:
+## Refactoring
 
-Sure, here is a README.md file for the code you provided:
+The progress bar code is organized into:
+- `progressbar.h`: Header file defining the `progressbar` function interface.
+- `lib_progressbar.c`: Source file containing the implementation of the `progressbar` function.
+- `progessbar.c`: Source file containing the `main` function with example usage.
+
+This separation allows for easier reuse and maintenance. The `lib_progressbar.c` also includes checks for `total = 0` to prevent division by zero errors.
+
+## Compilation and Execution
+
+To compile and run the example, follow these steps:
+
+1.  **Compile the library code:**
+    ```bash
+    gcc -c progessbar in C/lib_progressbar.c -o progessbar in C/lib_progressbar.o
+    ```
+
+2.  **Compile the main program and link with the library:**
+    ```bash
+    gcc progessbar in C/progessbar.c progessbar in C/lib_progressbar.o -o progessbar in C/progressbar_example
+    ```
+    *(Note: The output paths like "progessbar in C/lib_progressbar.o" are illustrative. You can adjust them as needed, e.g., just `lib_progressbar.o` if you `cd` into the directory first.)*
 
 
-# ProgressBar
+3.  **Run the executable:**
+    ```bash
+    ./progessbar in C/progressbar_example
+    ```
 
-This project shows how to create a progress bar in C. 
+## Example Output
 
-## Usage
-
-To compile the project, run the following command in the project directory:
-
-
+The console will show the progress bar updating:
 ```
-gcc -o progressbar progressbar.c
+Computing: [◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼....................] 50/100
 ```
+(The bar will fill up as it runs)
 
-
-To run the project, run the following command in the project directory:
-
-
+Followed by:
 ```
-./progressbar
-```
-
-
-The progress bar will be displayed in the console.
-
-## Example
-
-Here is an example of the progress bar displayed in the console:
-
-
-```
-Computing: [◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼] 100/100
+Computing: [◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼] 100/100
+Task Complete!
+Testing with total = 0:
+Test (0/0): [........................................] 0/0
+Done.
+Testing with current > total:
+Test (120/100): [◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼] 100/100
+Done.
+Testing with current = 0, total = 50:
+Test (0/50): [........................................] 0/50
+Done.
 ```
 
 ## Author
-This code was written by [Calvin-Enos](https://github.com/Calvin-Enos)
-
-
-
-
-
-**Fr**
-
-# Barre de progression en C pour Linux 
-Ce programme en C affiche une barre de progression dans la console pendant l'exécution d'une boucle. Il est conçu pour fonctionner sous Linux. 
-## Comment ça marche 
-Le code utilise la fonction `progressbar` pour afficher la barre de progression dans la console. Vous pouvez personnaliser la taille de la barre de progression et le préfixe du message en modifiant les paramètres de la fonction `progressbar`.  Le programme effectue une boucle pour simuler un processus de calcul, et la barre de progression est mise à jour à chaque itération pour refléter l'état actuel de l'avancement.
-## Compilation et exécution 
-Assurez-vous que vous avez un compilateur C compatible (comme GCC) installé sur votre système Linux. 
-Pour compiler le programme, ouvrez un terminal dans le répertoire 
-du code source et exécutez la commande suivante : 
-```
-gcc -o progress_bar progress_bar.c
-```
-
-**Pour exécuter le programme, utilisez la commande suivante :**
-
-`./progress_bar`
-
-Vous verrez la barre de progression se remplir pendant l'exécution de la boucle, avec un délai de 100 millisecondes (0.1 seconde) entre chaque mise à jour.
-
-## Exemple de sortie
-
-**Makefile**
-
-`Computing:[◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼]100/100`
-
-## Auteur
-Ce code a été écrit par [Calvin-Enos](https://github.com/Calvin-Enos)
-
+This code was originally written by [Calvin-Enos](https://github.com/Calvin-Enos) and subsequently refactored and updated.
